@@ -1,11 +1,11 @@
 {
   "name": "playwright",
   "version": "1.0.0",
-  "description": "",
+  "description": "playwright test",
   "main": "index.js",
   "scripts": {},
   "keywords": [],
-  "author": "",
+  "author": "Enes Agaoglu",
   "license": "ISC",
   "devDependencies": {
     "@playwright/test": "^1.39.0",
