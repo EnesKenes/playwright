@@ -21,7 +21,7 @@ test('login', async ({ page }) => {
   await expect(page.getByText('Swag Labs' )).toBeVisible();
 });
 
-test('add-remove', async({ page }) => {
+test('add-remove-buy', async({ page }) => {
 
   await page.goto('https://www.saucedemo.com');
 
