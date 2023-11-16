@@ -25,22 +25,23 @@ test('add-remove', async({ page }) => {
 
   await page.goto('https://www.saucedemo.com');
 
+  // login
   await page.locator('[data-test="username"]').click();
   await page.locator('[data-test="username"]').fill('standard_user');
   await page.locator('[data-test="password"]').click();
   await page.locator('[data-test="password"]').fill('secret_sauce');
   await page.locator('[data-test="login-button"]').click();
 
-  // add
+  // add to cart
   await page.locator('[data-test="add-to-cart-sauce-labs-backpack"]').click();
   await page.locator('[data-test="add-to-cart-sauce-labs-bike-light"]').click();
   await page.locator('[data-test="add-to-cart-sauce-labs-onesie"]').click();
 
-  // sepet
+  // cart check
   await page.locator('a').filter({ hasText: '3' }).click();
   await expect(page.getByText('Your Cart')).toBeVisible;
 
-  // remove
+  // remove from cart
   await page.locator('[data-test="remove-sauce-labs-onesie"]').click();
   await page.locator('[data-test="remove-sauce-labs-backpack"]').click();
 
