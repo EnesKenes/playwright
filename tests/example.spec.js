@@ -1,37 +1,27 @@
 // @ts-check
 const { test, expect } = require('@playwright/test');
 
-test('has title', async ({ page }) => {
+test.beforeEach('Open and Login', async ({ page }, testInfo) => {
   await page.goto('https://www.saucedemo.com');
 
+  await page.locator('[data-test="username"]').click();
+  await page.locator('[data-test="username"]').fill('standard_user');
+  await page.locator('[data-test="password"]').click();
+  await page.locator('[data-test="password"]').fill('secret_sauce');
+  await page.locator('[data-test="login-button"]').click();
+});
+
+test('has title', async ({ page }) => {
   // Expect a title "to contain" a substring.
   await expect(page).toHaveTitle(/Swag Labs/);
 });
 
 test('login', async ({ page }) => {
-  await page.goto('https://www.saucedemo.com');
-
-  await page.locator('[data-test="username"]').click();
-  await page.locator('[data-test="username"]').fill('standard_user');
-  await page.locator('[data-test="password"]').click();
-  await page.locator('[data-test="password"]').fill('secret_sauce');
-  await page.locator('[data-test="login-button"]').click();
-
-  // Expects page to have a heading with the name of Installation.
+  // Expects page to have a heading
   await expect(page.getByText('Swag Labs' )).toBeVisible();
 });
 
 test('add-remove-buy', async({ page }) => {
-
-  await page.goto('https://www.saucedemo.com');
-
-  // login
-  await page.locator('[data-test="username"]').click();
-  await page.locator('[data-test="username"]').fill('standard_user');
-  await page.locator('[data-test="password"]').click();
-  await page.locator('[data-test="password"]').fill('secret_sauce');
-  await page.locator('[data-test="login-button"]').click();
-
   // add to cart
   await page.locator('[data-test="add-to-cart-sauce-labs-backpack"]').click();
   await page.locator('[data-test="add-to-cart-sauce-labs-bike-light"]').click();
